@@ -151,7 +151,7 @@
 
       .partner-logo {
         height: 50px;
-        opacity: 0.6;
+        opacity: 0.8;
         transition: opacity 0.3s;
       }
 
@@ -195,7 +195,16 @@
       </a>
 
       <ul class="nav-links">
-        <li><a href="#">Tentang Kami</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Tentang Kami
+            <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Tentang Perusahaan</a></li>
+            <li><a href="Profile/direksi.html">Jajaran Direksi</a></li>
+          </ul>
+        </li>
         <li><a href="#">Pengembang</a></li>
         <li><a href="#">Solusi</a></li>
         <li><a href="#">Jaringan</a></li>
@@ -299,19 +308,5 @@
     </footer>
 
     <script src="js/main.js" defer></script>
-    <script>
-      // hover effect for partner logo
-      const logos = document.querySelectorAll(".partner-logo");
-      logos.forEach((logo) => {
-        logo.addEventListener("mouseover", () => {
-          logos.forEach((l) => {
-            if (l !== logo) l.style.opacity = "0.3";
-          });
-        });
-        logo.addEventListener("mouseout", () => {
-          logos.forEach((l) => (l.style.opacity = "0.6"));
-        });
-      });
-    </script>
   </body>
 </html>

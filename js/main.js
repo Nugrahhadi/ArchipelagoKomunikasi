@@ -25,3 +25,29 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelector(".hamburger").addEventListener("click", () => {
   document.querySelector("nav").classList.toggle("nav-active");
 });
+
+//dropdown
+document.addEventListener("DOMContentLoaded", function () {
+  // For mobile dropdown toggle
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const dropdownMenu = this.nextElementSibling;
+        const arrow = this.querySelector(".bi-chevron-down");
+
+        // Toggle dropdown
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
+
+        // Rotate arrow
+        arrow.style.transform =
+          dropdownMenu.style.display === "block"
+            ? "rotate(180deg)"
+            : "rotate(0)";
+      }
+    });
+  });
+});
