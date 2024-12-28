@@ -129,6 +129,7 @@ nav {
 
 /* Footer */
 .footer {
+  margin-top: auto;
   background-color: #000;
   color: #888;
   padding: 2rem 0;
