@@ -345,7 +345,7 @@ nav {
 
   .navbar-contact {
     gap: 0.5rem;
-    margin-right: 30px;
+    margin-right: 50px;
     display: flex;
   }
 
@@ -388,4 +388,27 @@ nav {
       transform: translateY(0);
     }
   }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 1rem;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .navbar-contact {
+    gap: 0.75rem;
+    margin-right: 40px;
+  }
+
+  .contact-icon {
+    font-size: 1.1rem;
+  }
+}
+
+.nav-links {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
