@@ -72,12 +72,30 @@
         gap: 16px;
       }
 
+      /* commissioner */
+      .commissioner-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .commissioner-grid .team-member:first-child {
+        grid-column: 1 / 2;
+      }
+
+      .commissioner-grid .team-member:last-child {
+        grid-column: 2 / 3;
+      }
+
       .member-image {
         width: 100%;
         aspect-ratio: 1;
         border-radius: 12px;
         overflow: hidden;
         transition: transform 0.3s ease;
+        position: relative;
+        cursor: pointer;
       }
 
       .member-image:hover {
@@ -88,7 +106,53 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* filter: grayscale(100%); */
+      }
+
+      .social-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .member-image:hover .social-overlay {
+        opacity: 1;
+      }
+
+      .social-button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        background: #c13584;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 16px;
+        transition: transform 0.2s ease;
+        width: 160px;
+        justify-content: center;
+      }
+
+      .social-button:first-child {
+        background: #0a66c2;
+      }
+
+      .social-button:hover {
+        transform: scale(1.05);
+      }
+
+      .social-button i {
+        font-size: 20px;
       }
 
       .member-info h3 {
@@ -118,10 +182,18 @@
           font-size: 18px;
         }
 
-        .team-grid {
+        .team-grid,
+        .commissioner-grid {
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 24px;
         }
+
+        .commissioner-grid .team-member:first-child,
+        .commissioner-grid .team-member:last-child {
+          grid-column: auto;
+        }
+
+        /* Button overlay */
       }
     </style>
   </head>
@@ -143,15 +215,15 @@
           </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle">
-              Carrier
-              <i class="bi bi-chevron-down"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Kesempatan Pekerjaan</a></li>
-              <li><a href="#">Kesempatan Magang</a></li>
-            </ul>
-          </li>
+          <a href="#" class="dropdown-toggle">
+            Carrier
+            <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Kesempatan Pekerjaan</a></li>
+            <li><a href="#">Kesempatan Magang</a></li>
+          </ul>
+        </li>
         <li><a href="#">Solusi</a></li>
         <li><a href="#">Jaringan</a></li>
         <li><a href="#">Komunitas</a></li>
@@ -201,6 +273,16 @@
         <div class="team-member">
           <div class="member-image">
             <img src="../Images/hadi.jpg" alt="Rafiif Nur Tahta Bagaskara" />
+            <div class="social-overlay">
+              <a href="#linkedin" class="social-button">
+                <i class="bi bi-linkedin"></i>
+                <span>Linked In</span>
+              </a>
+              <a href="#instagram" class="social-button">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
           <div class="member-info">
             <h3>Rafiif Nur Tahta Bagaskara</h3>
@@ -210,7 +292,17 @@
 
         <div class="team-member">
           <div class="member-image">
-            <img src="../Images/hadi.jpg" alt="Nugrahhadi Al Khawarizmi" />
+            <img src="../Images/hadi.jpg" alt="Rafiif Nur Tahta Bagaskara" />
+            <div class="social-overlay">
+              <a href="#linkedin" class="social-button">
+                <i class="bi bi-linkedin"></i>
+                <span>Linked In</span>
+              </a>
+              <a href="#instagram" class="social-button">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
           <div class="member-info">
             <h3>Nugrahhadi Al Khawarizmi</h3>
@@ -220,39 +312,70 @@
 
         <div class="team-member">
           <div class="member-image">
-            <img src="../Images/hadi.jpg" alt="Zulfa Mauluddin Qisti" />
+            <img src="../Images/hadi.jpg" alt="Rafiif Nur Tahta Bagaskara" />
+            <div class="social-overlay">
+              <a href="#linkedin" class="social-button">
+                <i class="bi bi-linkedin"></i>
+                <span>Linked In</span>
+              </a>
+              <a href="#instagram" class="social-button">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
           <div class="member-info">
-            <h3>Zulfa Mauluddin Qisti</h3>
+            <h3>Zulfa Mauludding Qisti</h3>
             <p>Chief Production Officer</p>
           </div>
         </div>
       </div>
 
+      <!-- Commissioner -->
       <div class="jabatan">
         <h2>Commissioner</h2>
       </div>
-
-      <div class="team-grid">
+      <div class="commissioner-grid">
         <div class="team-member">
           <div class="member-image">
-            <img src="../Images/hadi.jpg" alt="Jules Urbach" />
+            <img src="../Images/hadi.jpg" alt="Daniel Ferdiansyah" />
+            <div class="social-overlay">
+              <a href="#linkedin" class="social-button">
+                <i class="bi bi-linkedin"></i>
+                <span>Linked In</span>
+              </a>
+              <a href="#instagram" class="social-button">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
           <div class="member-info">
             <h3>Daniel Ferdiansyah</h3>
-            <p>Chief Commissioner</p>
+            <p>Commissioner Officer</p>
           </div>
         </div>
 
         <div class="team-member">
           <div class="member-image">
-            <img src="../Images/hadi.jpg" alt="Ariel Emanuel" />
+            <img src="../Images/hadi.jpg" alt="A Rico Yoananda R" />
+            <div class="social-overlay">
+              <a href="#linkedin" class="social-button">
+                <i class="bi bi-linkedin"></i>
+                <span>Linked In</span>
+              </a>
+              <a href="#instagram" class="social-button">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
           <div class="member-info">
-            <h3>A Rico Yoananda Rahardja</h3>
+            <h3>A Rico Yoananda R</h3>
             <p>Commissioner</p>
           </div>
         </div>
+      </div>
     </main>
 
     <footer class="footer">
