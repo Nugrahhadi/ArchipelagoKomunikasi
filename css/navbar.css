@@ -238,6 +238,16 @@ nav {
     display: flex;
   }
 
+  .navbar-contact {
+    position: relative;
+    gap: 1rem;
+    margin-right: 50px;
+  }
+
+  .contact-icon {
+    font-size: 1.25rem;
+  }
+
   /* tombol hamburger menu */
   .hamburger {
     display: block; /* Tampilkan tombol hamburger */
