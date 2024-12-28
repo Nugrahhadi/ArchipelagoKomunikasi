@@ -166,6 +166,13 @@
         margin: 8px 0 0;
       }
 
+      @media (min-width: 769px) {
+        .member-image:hover .social-overlay {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+
       @media (max-width: 768px) {
         nav {
           padding: 1rem;
@@ -180,6 +187,22 @@
 
         .team-intro p {
           font-size: 18px;
+        }
+
+        .social-overlay {
+          justify-content: flex-end;
+          padding-bottom: 20px;
+        }
+
+        .social-overlay.active {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .social-button {
+          width: 140px;
+          padding: 10px 20px;
+          font-size: 14px;
         }
 
         .team-grid,
@@ -450,5 +473,45 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fungsi untuk menutup semua overlay yang terbuka
+        function closeAllOverlays() {
+          document.querySelectorAll(".social-overlay").forEach((overlay) => {
+            overlay.classList.remove("active");
+          });
+        }
+
+        // Tambahkan event listener untuk setiap member-image
+        document.querySelectorAll(".member-image").forEach((member) => {
+          member.addEventListener("click", function (e) {
+            // Hanya jalankan di mobile
+            if (window.innerWidth <= 768) {
+              // Hentikan event bubbling
+              e.stopPropagation();
+
+              const overlay = this.querySelector(".social-overlay");
+
+              // Jika overlay ini belum active, tutup yang lain dulu
+              if (!overlay.classList.contains("active")) {
+                closeAllOverlays();
+              }
+
+              // Toggle overlay ini
+              overlay.classList.toggle("active");
+            }
+          });
+        });
+
+        // Tutup overlay saat click di luar
+        document.addEventListener("click", function (e) {
+          if (window.innerWidth <= 768) {
+            if (!e.target.closest(".member-image")) {
+              closeAllOverlays();
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
