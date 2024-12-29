@@ -239,7 +239,7 @@
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">
-            Carrier
+            Career
             <i class="bi bi-chevron-down"></i>
           </a>
           <ul class="dropdown-menu">
@@ -482,22 +482,17 @@
           });
         }
 
-        // Tambahkan event listener untuk setiap member-image
         document.querySelectorAll(".member-image").forEach((member) => {
           member.addEventListener("click", function (e) {
-            // Hanya jalankan di mobile
             if (window.innerWidth <= 768) {
-              // Hentikan event bubbling
               e.stopPropagation();
 
               const overlay = this.querySelector(".social-overlay");
 
-              // Jika overlay ini belum active, tutup yang lain dulu
               if (!overlay.classList.contains("active")) {
                 closeAllOverlays();
               }
 
-              // Toggle overlay ini
               overlay.classList.toggle("active");
             }
           });

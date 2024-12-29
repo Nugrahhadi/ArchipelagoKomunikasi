@@ -1,53 +1,66 @@
-// Add scroll event listener for navbar background
-window.addEventListener("scroll", () => {
+// main.js
+document.addEventListener("DOMContentLoaded", function () {
   const nav = document.querySelector("nav");
-  if (window.scrollY > 50) {
-    nav.style.background = "rgba(0, 0, 0, 0.95)";
-  } else {
-    nav.style.background = "rgba(0, 0, 0, 0.8)";
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
+  const dropdowns = document.querySelectorAll(".dropdown");
 
-  // Event listener untuk tombol hamburger
+  // Scroll event untuk background navbar
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      nav.style.background = "rgba(0, 0, 0, 0.95)";
+    } else {
+      nav.style.background = "rgba(0, 0, 0, 0.8)";
+    }
+  });
+
+  // Hamburger menu toggle
   hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("nav-active"); // Toggle class untuk menampilkan/menyembunyikan menu
-
-    // Toggle animasi untuk hamburger
+    nav.classList.toggle("nav-active");
+    navLinks.classList.toggle("nav-active");
     hamburger.classList.toggle("is-active");
   });
-});
 
-// menu nav
-document.querySelector(".hamburger").addEventListener("click", () => {
-  document.querySelector("nav").classList.toggle("nav-active");
-});
+  // Dropdown functionality for both mobile and tablet
+  dropdowns.forEach((dropdown) => {
+    const toggle = dropdown.querySelector(".dropdown-toggle");
+    const menu = dropdown.querySelector(".dropdown-menu");
+    const arrow = toggle.querySelector(".bi-chevron-down");
 
-//dropdown
-document.addEventListener("DOMContentLoaded", function () {
-  // For mobile dropdown toggle
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-
-  dropdownToggles.forEach((toggle) => {
     toggle.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
+      // Untuk tablet dan mobile
+      if (window.innerWidth <= 1024) {
         e.preventDefault();
-        const dropdownMenu = this.nextElementSibling;
-        const arrow = this.querySelector(".bi-chevron-down");
+        e.stopPropagation();
 
-        // Toggle dropdown
-        dropdownMenu.style.display =
-          dropdownMenu.style.display === "block" ? "none" : "block";
+        // Tutup dropdown lain
+        dropdowns.forEach((other) => {
+          if (other !== dropdown) {
+            other.classList.remove("touch-active");
+            other.querySelector(".dropdown-menu").style.display = "none";
+            other.querySelector(".bi-chevron-down").style.transform =
+              "rotate(0)";
+          }
+        });
 
-        // Rotate arrow
+        // Toggle current dropdown
+        dropdown.classList.toggle("touch-active");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
         arrow.style.transform =
-          dropdownMenu.style.display === "block"
-            ? "rotate(180deg)"
-            : "rotate(0)";
+          menu.style.display === "block" ? "rotate(180deg)" : "rotate(0)";
       }
     });
+  });
+
+  // Tutup dropdown saat klik di luar
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".dropdown") && window.innerWidth <= 1024) {
+      dropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("touch-active");
+        dropdown.querySelector(".dropdown-menu").style.display = "none";
+        dropdown.querySelector(".bi-chevron-down").style.transform =
+          "rotate(0)";
+      });
+    }
   });
 });

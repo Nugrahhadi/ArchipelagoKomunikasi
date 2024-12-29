@@ -413,3 +413,69 @@ nav {
 .nav-links {
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  nav {
+    padding: 1rem 2rem;
+  }
+
+  .logo img {
+    height: 45px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .dropdown-toggle {
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-menu {
+    display: none;
+  }
+
+  .touch-active .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (hover: none) {
+    .dropdown:hover .dropdown-menu {
+      display: none;
+    }
+
+    .dropdown.touch-active .dropdown-menu {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 180px;
+  }
+
+  .navbar-contact {
+    gap: 0.8rem;
+  }
+
+  .contact-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
