@@ -37,6 +37,7 @@
         padding: 120px 20px 60px;
         max-width: 1200px;
         margin: 0 auto;
+        width: 100%;
       }
 
       .job-count {
@@ -115,13 +116,14 @@
       }
 
       .read-more {
-        color: #8b5cf6;
+        color: #d946b2;
         text-decoration: none;
         display: flex;
         align-items: center;
         gap: 8px;
         font-size: 16px;
         transition: transform 0.3s ease;
+        padding-right: 20px;
       }
 
       .read-more:hover {
@@ -167,8 +169,8 @@
             <i class="bi bi-chevron-down"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="../Profile/company.html">Tentang Perusahaan</a></li>
-            <li><a href="../Profile/direksi.html">Jajaran Direksi</a></li>
+            <li><a href="../Profile/company.html">Company Description</a></li>
+            <li><a href="../Profile/direksi.html">Meet the Team</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -177,13 +179,11 @@
             <i class="bi bi-chevron-down"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="work.html">Kesempatan Pekerjaan</a></li>
-            <li><a href="internship.html">Kesempatan Magang</a></li>
+            <li><a href="work.html">Job Opportunity</a></li>
+            <li><a href="internship.html">Internship Opportunity</a></li>
           </ul>
         </li>
-        <li><a href="#">Solusi</a></li>
-        <li><a href="#">Jaringan</a></li>
-        <li><a href="#">Komunitas</a></li>
+        <li><a href="#">Connect</a></li>
       </ul>
 
       <div class="navbar-contact">
@@ -220,25 +220,27 @@
         <div class="job-card">
           <div class="job-info">
             <div class="company-logo">
-              <img src="../Images/icon.png" alt="Archipelago Logo" />
+              <img src="../Images/thoc.jpg" alt="Archipelago Logo" />
             </div>
             <div class="job-details">
-              <h2 class="job-title">Social Media Specialist</h2>
-              <div class="company-name">Archipelago Communications</div>
+              <h2 class="job-title">Product Designer</h2>
+              <div class="company-name">The House of Commons</div>
               <div class="job-meta">
                 <span><i class="bi bi-geo-alt"></i>Remote</span>
                 <span><i class="bi bi-cash"></i>IDR 8-12jt/month</span>
-                <span><i class="bi bi-calendar"></i>Posted Today</span>
+                <span
+                  ><i class="bi bi-calendar"></i
+                  ><span class="posted-date">Posted Today</span></span
+                >
               </div>
             </div>
           </div>
-          <a href="#" class="read-more">
+          <a href="Work-Detail/PD-thoc.html" class="read-more">
             Read more
             <i class="bi bi-arrow-right"></i>
           </a>
-        </div> -->
-
-      </div>
+        </div>
+      </div> -->
     </main>
 
     <footer class="footer">
@@ -268,7 +270,9 @@
               class="social-icon"
               ><i class="fab fa-linkedin"></i
             ></a>
-            <a href="http://wa.me/6283197391127" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="http://wa.me/6283197391127" class="social-icon"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
           </div>
 
           <p class="copyright">
@@ -281,15 +285,15 @@
           <div class="footer-column">
             <h3>ARCHIPELAGO</h3>
             <ul>
-                <li><a href="#">Company Description</a></li>
-                <li><a href="#">Meet the Team</a></li>
-                <li><a href="#">Job Opportunity</a></li>
-                <li><a href="#">Internship Opportunity</a></li>
+              <li><a href="../Profile/company.html">Company Description</a></li>
+              <li><a href="../Profile/direksi.html">Meet the Team</a></li>
+              <li><a href="work.html">Job Opportunity</a></li>
+              <li><a href="internship.html">Internship Opportunity</a></li>
             </ul>
           </div>
 
           <div class="footer-column">
-            <h3>TERHUBUNG</h3>
+            <h3>CONNECT</h3>
             <ul>
               <li><a href="#">The Indonesian Press</a></li>
               <li><a href="#">Munazara.co</a></li>
@@ -300,5 +304,56 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+      const POST_TIME_KEY = "job_post_time";
+
+      function initializePostTime() {
+        if (!localStorage.getItem(POST_TIME_KEY)) {
+          localStorage.setItem(POST_TIME_KEY, new Date().toISOString());
+        }
+
+        const postedTime = localStorage.getItem(POST_TIME_KEY);
+        document
+          .querySelector(".posted-date")
+          .setAttribute("data-posted", postedTime);
+      }
+
+      function timeAgo(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const secondsAgo = Math.floor((now - date) / 1000);
+
+        if (secondsAgo < 5) {
+          return "Just now";
+        } else if (secondsAgo < 60) {
+          return `${secondsAgo} seconds ago`;
+        } else if (secondsAgo < 3600) {
+          const minutes = Math.floor(secondsAgo / 60);
+          return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+        } else if (secondsAgo < 86400) {
+          const hours = Math.floor(secondsAgo / 3600);
+          return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+        } else {
+          const days = Math.floor(secondsAgo / 86400);
+          return `${days} day${days > 1 ? "s" : ""} ago`;
+        }
+      }
+
+      function updateAllTimestamps() {
+        const timestamps = document.querySelectorAll(".posted-date");
+        timestamps.forEach((element) => {
+          const postedDate = element.getAttribute("data-posted");
+          element.textContent = timeAgo(postedDate);
+        });
+      }
+
+      // Inisialisasi waktu posting saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", () => {
+        initializePostTime();
+        updateAllTimestamps();
+      });
+
+      setInterval(updateAllTimestamps, 1000);
+    </script>
   </body>
 </html>
